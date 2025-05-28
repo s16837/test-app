@@ -104,6 +104,9 @@ jobs:
           path: target/*.jar
           retention-days: 10
       
+      - name: Debug check for JAR
+        run: ls -lh target/
+
       - name: Depcheck
         uses: dependency-check/Dependency-Check_Action@main
         env: 
