@@ -136,6 +136,16 @@ jobs:
           echo "Found: $JAR_FILE"
           cp "$JAR_FILE" ./app.jar
 
+      - name: List current working directory contents
+        run: |
+          echo "Working dir:"
+          pwd
+          echo "Files:"
+          ls -lh
+          echo "Target dir:"
+          s -lh target/
+
+
           
       - name: Generate SBOM for JAR
         uses: anchore/sbom-action@v0.9.0
