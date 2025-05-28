@@ -131,6 +131,7 @@ jobs:
           file: target/app.jar
           output-format: spdx-json
           output-file: app-sbom.spdx.json
+          upload-artifact: false
 
       - name: Upload SBOM artifact
         uses: actions/upload-artifact@v4
