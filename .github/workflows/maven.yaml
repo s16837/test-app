@@ -5,6 +5,10 @@ name: Java CI with Maven
 
 on: [ push ]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   calculate-version:
     runs-on: ubuntu-latest
@@ -163,6 +167,7 @@ jobs:
           subject-path: ./app-sbom.spdx.json
           predicate-type: spdx 
 
+
   docker:
     runs-on: ubuntu-latest
     needs: [calculate-version, build]
@@ -195,7 +200,7 @@ jobs:
       - name: Generate SBOM for Docker image
         uses: anchore/sbom-action@v0.9.0
         with:
-          image: my-image:latest
+          image: s16837/test-app:${{ needs.calculate-version.outputs.version }}
           output-format: spdx-json
           output-file: docker-sbom.spdx.json
 
