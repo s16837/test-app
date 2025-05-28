@@ -154,7 +154,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-sbom
-          path: app-sbom.spdx.json
+          path: ./app-sbom.spdx.json
+          include-hidden-files: true
 
 
   docker:
