@@ -140,14 +140,16 @@ jobs:
       - name: Generate SBOM for JAR
         uses: anchore/sbom-action@v0.9.0
         with:
-          file: app.jar
+          file: ./app.jar
           output-format: spdx-json
-          output-file: app-sbom.spdx.json
+          output-file: ./app-sbom.spdx.json
           upload-artifact: false
 
 
-      - name: Debug list SBOM output
-        run: find . -name '*.spdx.json'
+      - name: Verify SBOM file exists
+        run: |
+          ls -lh app-sbom.spdx.json || echo "SBOM file not found"
+          cat app-sbom.spdx.json || echo "SBOM file is empty or unreadable"
 
 
       - name: Upload SBOM artifact
