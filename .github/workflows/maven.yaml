@@ -164,7 +164,7 @@ jobs:
       - name: Attest SBOM 
         uses: actions/attest-sbom@v1
         with:
-          subject-path: ./app-jar
+          subject-path: ./app.jar
           sbom-path: ./app-sbom.spdx.json
           push-to-registry: false
           show-summary: true
