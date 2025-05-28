@@ -133,7 +133,7 @@ jobs:
           output-file: app.spdx.json
           upload-artifact: false
 
-      - name: Debug: list SBOM output
+      - name: Debug list SBOM output
         run: find . -name '*.spdx.json'
 
 
