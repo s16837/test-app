@@ -125,18 +125,18 @@ jobs:
           name: Depcheck report
           path: reports/
           
-      - name: Generate SBOM for JAR
+      - name: Generate SBOM for JAR file
         uses: anchore/sbom-action@v0.9.0
         with:
-          file: target/*.jar
+          file: target/app.jar
           output-format: spdx-json
-          output-file: test-app-sbom.spdx.json
+          output-file: app-sbom.spdx.json
 
       - name: Upload SBOM artifact
         uses: actions/upload-artifact@v4
         with:
-          name: test-app-sbom
-          path: test-app-sbom.spdx.json
+          name: app-sbom
+          path: app-sbom.spdx.json
 
 
   docker:
