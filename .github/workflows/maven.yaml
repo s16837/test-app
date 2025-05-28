@@ -164,8 +164,10 @@ jobs:
       - name: Attest SBOM 
         uses: actions/attest-sbom@v1
         with:
-          subject-path: ./app-sbom.spdx.json
-          predicate-type: spdx 
+          subject-path: ./app-jar
+          sbom-path: /app-sbom.spdx.json
+          push-to-registry: false
+          show-summary: true
 
 
   docker:
