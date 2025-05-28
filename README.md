@@ -5,5 +5,4 @@ test
 
 # testowanie ci
 
-
 # testowanie CodeQL
