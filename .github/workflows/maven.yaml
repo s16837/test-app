@@ -161,13 +161,14 @@ jobs:
           include-hidden-files: true
 
 
-      - name: Attest SBOM 
+      - name: Attest SBOM
         uses: actions/attest-sbom@v1
         with:
           subject-path: ./app.jar
           sbom-path: ./app-sbom.spdx.json
           push-to-registry: false
           show-summary: true
+          github-token: ${{ secrets.PAT_USI }}
 
 
   docker:
