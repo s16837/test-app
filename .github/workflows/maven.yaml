@@ -124,6 +124,18 @@ jobs:
         with:
           name: Depcheck report
           path: reports/
+          
+      - name: Generate SBOM for JAR
+        uses: anchore/sbom-action@v0.9.0
+        with:
+          file: target/*.jar
+          output-format: spdx-json
+
+      - name: Upload SBOM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: '*.spdx.json'
 
 
   docker:
@@ -154,6 +166,20 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: s16837/test-app:${{ needs.calculate-version.outputs.version }}
+
+      - name: Generate SBOM for Docker image
+        uses: anchore/sbom-action@v0.9.0
+        with:
+          image: my-image:latest
+          output-format: spdx-json
+
+      - name: Upload docker SBOM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-sbom
+          path: '*.spdx.json'
+
+
   trigger-deploy:
     runs-on: ubuntu-latest
     needs: [ calculate-version, docker ]
