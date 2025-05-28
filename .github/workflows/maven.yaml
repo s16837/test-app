@@ -130,12 +130,13 @@ jobs:
         with:
           file: target/*.jar
           output-format: spdx-json
+          output-file: test-app-sbom.spdx.json
 
       - name: Upload SBOM artifact
         uses: actions/upload-artifact@v4
         with:
-          name: sbom
-          path: '*.spdx.json'
+          name: test-app-sbom
+          path: test-app-sbom.spdx.json
 
 
   docker:
