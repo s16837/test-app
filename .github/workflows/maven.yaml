@@ -134,7 +134,7 @@ jobs:
         run: |
           JAR_FILE=$(find target -name '*.jar' -not -name '*.original' | head -n 1)
           echo "Found: $JAR_FILE"
-          cp "$JAR_FILE" app.jar
+          cp "$JAR_FILE" ./app.jar
 
           
       - name: Generate SBOM for JAR
