@@ -118,11 +118,12 @@ jobs:
           args: >
             --failOnCVSS 7
             --enableRetired
+
       - name: Upload depcheck results
         uses: actions/upload-artifact@v3
         with:
-          name: Dependency check report
-          path: ${{github.workspace}}/reports
+          name: Depcheck report
+          path: reports/
 
 
   docker:
