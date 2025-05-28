@@ -127,14 +127,24 @@ jobs:
         with:
           name: Depcheck report
           path: reports/
+
+
+
+      - name: Find and rename JAR
+        run: |
+          JAR_FILE=$(find target -name '*.jar' -not -name '*.original' | head -n 1)
+          echo "Found: $JAR_FILE"
+          cp "$JAR_FILE" app.jar
+
           
       - name: Generate SBOM for JAR
         uses: anchore/sbom-action@v0.9.0
         with:
-          file: target/*.jar
+          file: app.jar
           output-format: spdx-json
           output-file: app-sbom.spdx.json
           upload-artifact: false
+
 
       - name: Debug list SBOM output
         run: find . -name '*.spdx.json'
