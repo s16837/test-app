@@ -130,8 +130,12 @@ jobs:
         with:
           file: target/app.jar
           output-format: spdx-json
-          output-file: app-sbom.spdx.json
+          output-file: app.spdx.json
           upload-artifact: false
+
+      - name: Debug: list SBOM output
+        run: find . -name '*.spdx.json'
+
 
       - name: Upload SBOM artifact
         uses: actions/upload-artifact@v4
